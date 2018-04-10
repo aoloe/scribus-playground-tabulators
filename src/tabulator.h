@@ -15,6 +15,8 @@ public:
   explicit Tabulator(QWidget *parent = 0);
   ~Tabulator();
 
+  int getValue();
+
 private:
   Ui::Tabulator *ui;
 };

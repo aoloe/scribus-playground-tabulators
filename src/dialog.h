@@ -15,6 +15,9 @@ public:
   explicit Dialog(QWidget *parent = 0);
   ~Dialog();
 
+public slots:
+    void apply();
+
 private:
   Ui::Dialog *ui;
 };

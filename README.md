@@ -50,3 +50,15 @@ Create a separate `.ui` with the line:
 add the child `.ui` to the main one:
 
 - https://stackoverflow.com/questions/15204925/dynamically-adding-qwidgets-to-qvboxlayout
+
+## Add widgets to a QListWidget
+
+- https://stackoverflow.com/questions/26199374/add-qwidget-to-qlistwidget
+- https://stackoverflow.com/questions/18904155/qlistwidgetitem-with-radio-button
+
+## Sorting a QListWidget?
+
+We should subbclass QListWidgetItem and reimplement its `<` operator.
+
+- https://stackoverflow.com/questions/8493671/sorting-a-qlistwidget-using-sortitems
+- https://stackoverflow.com/questions/6097127/how-to-get-a-widget-from-qlistwidgetitem

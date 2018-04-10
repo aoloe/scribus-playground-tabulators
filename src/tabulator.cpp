@@ -12,3 +12,8 @@ Tabulator::~Tabulator()
 {
   delete ui;
 }
+
+int Tabulator::getValue()
+{
+    return this->ui->spinBox->value();
+}
