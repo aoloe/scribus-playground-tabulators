@@ -8,17 +8,23 @@
 class ListTabulatorItem : public QListWidgetItem
 {
     public:
+        ListTabulatorItem() :
+            QListWidgetItem() {}
         ListTabulatorItem(QListWidget* listWidget) :
             QListWidgetItem(listWidget) {}
-        bool operator < (const ListTabulatorItem & rhs) const
+        const QListWidget* getWidget(const ListTabulatorItem& item)
         {
-            // QListWidget *QListWidgetItem::listWidget() const
-            // LblNames widget = <dynamic_cast>(LblNames*)( listWidget->itemWidget(item) );
-            auto lhsTabulator  = this->data(Qt::DisplayRole);
-            qDebug() << "type" << lhsTabulator.type();
-            // auto lhsTabulator = dynamic_cast<const Tabulator*>(listWidget()->itemWidget(this));
-            // auto rhsTabulator = dynamic_cast<const Tabulator*>(listWidget()->itemWidget(&rhs));
+            const auto lhsWidget = listWidget()->itemWidget(const_cast<QListWidgetItem*>(dynamic_cast<const QListWidgetItem*>(&item)));
+        }
+        bool operator< (const QListWidgetItem & rhs) const override
+        {
+            const auto lhsWidget = listWidget()->itemWidget(const_cast<QListWidgetItem*>(dynamic_cast<const QListWidgetItem*>(this)));
+            auto lhsTabulator = dynamic_cast<const Tabulator*>(lhsWidget);
+            // auto lhsTabulator = dynamic_cast<const Tabulator*>(getWidget(this));
             // qDebug() << lhsTabulator->getValue();
+            const auto rhsWidget = listWidget()->itemWidget(const_cast<QListWidgetItem*>(dynamic_cast<const QListWidgetItem*>(&rhs)));
+            auto rhsTabulator = dynamic_cast<const Tabulator*>(rhsWidget);
+            return lhsTabulator->getValue() < rhsTabulator->getValue();
         }
 };
 
@@ -32,11 +38,23 @@ Dialog::Dialog(QWidget *parent) :
         auto tabulator = new Tabulator(this);
         // ui->verticalLayout->insertWidget(0, tabulator);
         // auto it = new QListWidgetItem(ui->listWidget);
-        auto it = new ListTabulatorItem(ui->listWidget);
+        // auto it = new ListTabulatorItem(ui->listWidget);
+        auto it = new ListTabulatorItem();
         it->setSizeHint(tabulator->sizeHint());
+        ui->listWidget->addItem(it);
         ui->listWidget->setItemWidget(it, tabulator);
     }
     {
+        auto tabulator = new Tabulator(this);
+        // ui->verticalLayout->insertWidget(0, tabulator);
+        // auto it = new QListWidgetItem(ui->listWidget);
+        // auto it = new ListTabulatorItem(ui->listWidget);
+        auto it = new ListTabulatorItem();
+        it->setSizeHint(tabulator->sizeHint());
+        ui->listWidget->addItem(it);
+        ui->listWidget->setItemWidget(it, tabulator);
+    }
+    if (false) {
         auto tabulator = new Tabulator(this);
         // ui->verticalLayout->insertWidget(0, tabulator);
         // auto it = new QListWidgetItem(ui->listWidget);

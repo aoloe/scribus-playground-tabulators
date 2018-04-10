@@ -15,7 +15,7 @@ public:
   explicit Tabulator(QWidget *parent = 0);
   ~Tabulator();
 
-  int getValue();
+  int getValue() const;
 
 private:
   Ui::Tabulator *ui;

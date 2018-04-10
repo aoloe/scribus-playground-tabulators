@@ -13,7 +13,7 @@ Tabulator::~Tabulator()
   delete ui;
 }
 
-int Tabulator::getValue()
+int Tabulator::getValue() const
 {
     return this->ui->spinBox->value();
 }
