@@ -21,8 +21,8 @@ class ListTabulatorItem : public QListWidgetItem
 
         bool operator< (const QListWidgetItem & rhs) const override
         {
-            auto lhsTabulator = getWidget();
-            auto rhsTabulator = dynamic_cast<const ListTabulatorItem*>(&rhs)->getWidget();
+            const auto lhsTabulator = getWidget();
+            const auto rhsTabulator = dynamic_cast<const ListTabulatorItem*>(&rhs)->getWidget();
             return lhsTabulator->getValue() < rhsTabulator->getValue();
         }
 };
